@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue2.6.10.js"></script>
+    <style type="text/css">
+        *{margin:0px; padding:0px;}
+        body{font-size:14px;}
+        #app{width:1000px; margin:10px auto;}
+        #bigImg{float:left;
+            margin-right:10px;}
+        .item{
+            width:340px;
+            line-height:30px;
+            box-sizing: border-box;
+            background:#f7f7f7;
+            border:1px solid #f7f7f7;
+            margin:10px 0px;
+            float:left;
+        }
+        .item img{vertical-align:middle; margin-right:10px;}
+        .select{ border:1px solid darkred;}
+    </style>
+</head>
+<body>
+<div id="app">
+    <img :src="ImgUrl" id="bigImg"/>
+    <p>颜色选择</p>
+    <div class="item" v-for="(item,index) in iPhone" :key="index" :class="[idx == index?'select':'']" @click="getIndex(item.imgBigUrl)" @click="isSelect(index)"><img :src="item.imgUrl" />{{item.desc}}</div>
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            ImgUrl:'img/01.png',
+            iPhone:[
+                {desc:'iPhone11ProMax深空灰色512GB',
+                    imgUrl:'img/05.png',
+                    imgBigUrl:'img/01.png'},
+                {desc:'iPhone11ProMax银色512GB',
+                    imgUrl:'img/06.png',
+                    imgBigUrl:'img/02.png'},
+                {desc:'iPhone11ProMax暗夜绿色512GB',
+                    imgUrl:'img/07.png',
+                    imgBigUrl:'img/03.png'},
+                {desc:'iPhone11ProMax金色512GB',
+                    imgUrl:'img/08.png',
+                    imgBigUrl:'img/04.png'}
+            ]
+        },
+        methods:{
+            getIndex(img){
+                this.ImgUrl=img
+            },
+            isSelect(index) {
+                //变换样式
+                console.log(index)
+                this.idx = index
+            }
+        }
+    })
+</script>
+</body>
+</html>
